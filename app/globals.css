@@ -1,0 +1,100 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-bangla-sans), "Hind Siliguri", system-ui, sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(255, 212, 71, 0.22), transparent 32rem),
+    linear-gradient(180deg, #fff8ea 0%, #ffffff 42%, #edf8ee 100%);
+  color: #17140d;
+}
+
+h1,
+h2 {
+  font-family: var(--font-bangla-serif), "Noto Serif Bengali", Georgia, serif;
+  letter-spacing: 0;
+}
+
+h3,
+button,
+a {
+  letter-spacing: 0;
+}
+
+.dark body {
+  background:
+    radial-gradient(circle at top left, rgba(247, 181, 0, 0.16), transparent 34rem),
+    linear-gradient(180deg, #10140d 0%, #161910 52%, #07170f 100%);
+  color: #fff8ea;
+}
+
+::selection {
+  background: #ffd447;
+  color: #17140d;
+}
+
+.glass {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(18px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.dark .glass {
+  background: rgba(13, 23, 16, 0.74);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+
+.section-pad {
+  padding: 5rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .section-pad {
+    padding: 7rem 2rem;
+  }
+}
+
+.container-soft {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.focus-ring {
+  outline: none;
+}
+
+.focus-ring:focus-visible {
+  box-shadow: 0 0 0 4px rgba(247, 181, 0, 0.35);
+}
+
+.mango-float {
+  animation: mangoFloat 6s ease-in-out infinite;
+}
+
+@keyframes mangoFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(2deg);
+  }
+}
