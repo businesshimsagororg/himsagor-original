@@ -1,4 +1,4 @@
-# Himsagor Original
+﻿# Himsagor Original
 
 Premium, production-shaped e-commerce website for selling authentic Satkhira Himsagor mangoes online in Bangladesh.
 
@@ -79,7 +79,7 @@ Courier buttons are ready for Pathao, Steadfast, and RedX credentials. Without A
 - No advance payment
 - Pan Bangladesh delivery
 - Flat Bangladesh delivery fee logic
-- Coupon support: `HIMSA100`, `FAMILY5`
+- Coupon support via `NEXT_PUBLIC_COUPONS_JSON`
 - Mandatory unboxing video notice for complaints
 - Premium gift and family package catalog
 - Customer profile, order history, saved address schema, wishlist schema

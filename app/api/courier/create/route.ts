@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { isAdminAuthorized } from "@/lib/admin-auth";
 import { createCourierBooking, type CourierPartner } from "@/lib/integrations";
 import { supabase } from "@/lib/db";
 import { findMemoryOrder, updateMemoryOrder } from "@/lib/memory-store";
@@ -7,7 +8,7 @@ export async function POST(request: Request) {
   const { searchParams } = new URL(request.url);
   const token = searchParams.get("token");
 
-  if (token !== process.env.ADMIN_TOKEN) {
+  if (!isAdminAuthorized(token)) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

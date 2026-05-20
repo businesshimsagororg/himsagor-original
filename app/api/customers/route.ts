@@ -1,10 +1,14 @@
-import { NextResponse } from "next/server";
+﻿import { NextResponse } from "next/server";
 import { z } from "zod";
 import { supabase } from "@/lib/db";
+import { bangladeshPhoneRegex } from "@/lib/order-schema";
 
 const customerSchema = z.object({
   name: z.string().min(2),
-  phone: z.string().min(10),
+  phone: z
+    .string()
+    .trim()
+    .regex(bangladeshPhoneRegex, "Enter a valid Bangladeshi mobile number"),
   email: z.string().email().optional().or(z.literal(""))
 });
 

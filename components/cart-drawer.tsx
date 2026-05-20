@@ -119,7 +119,7 @@ export function CartDrawer() {
           <input
             value={couponCode}
             onChange={(event) => setCouponCode(event.target.value)}
-            placeholder="Coupon code: HIMSA100"
+            placeholder="Coupon code"
             className="mt-3 w-full rounded-lg border border-black/10 bg-cream px-3 py-3 text-sm outline-none dark:border-white/10 dark:bg-white/10"
           />
           <div className="mt-4 grid gap-2 text-sm">

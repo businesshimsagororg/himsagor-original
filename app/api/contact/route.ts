@@ -1,9 +1,13 @@
 ﻿import { NextResponse } from "next/server";
 import { z } from "zod";
+import { bangladeshPhoneRegex } from "@/lib/order-schema";
 
 const contactSchema = z.object({
   name: z.string().min(2),
-  phone: z.string().min(10),
+  phone: z
+    .string()
+    .trim()
+    .regex(bangladeshPhoneRegex, "Enter a valid Bangladeshi mobile number"),
   message: z.string().min(5)
 });
 

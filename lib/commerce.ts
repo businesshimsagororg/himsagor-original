@@ -1,4 +1,5 @@
 ﻿import { products } from "@/lib/products";
+import { getCoupons } from "@/lib/coupons";
 
 export type CartItem = {
   productId: string;
@@ -9,10 +10,6 @@ export type ShippingZone = "bangladesh";
 
 export const flatShippingFee = 120;
 
-export const coupons = {
-  HIMSA100: { label: "৳100 off", type: "flat", value: 100 },
-  FAMILY5: { label: "5% family discount", type: "percent", value: 5 }
-} as const;
 
 export function formatTk(amount: number) {
   return `৳${amount.toLocaleString("en-BD")}`;
@@ -24,9 +21,8 @@ export function getCartTotals(items: CartItem[], couponCode?: string) {
     return sum + (product ? product.price * item.quantity : 0);
   }, 0);
 
-  const coupon = couponCode
-    ? coupons[couponCode.toUpperCase() as keyof typeof coupons]
-    : undefined;
+  const coupons = getCoupons();
+  const coupon = couponCode ? coupons[couponCode.toUpperCase()] : undefined;
   const discount = coupon
     ? coupon.type === "flat"
       ? coupon.value

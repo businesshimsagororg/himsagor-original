@@ -1,8 +1,13 @@
 ﻿import { z } from "zod";
 
+export const bangladeshPhoneRegex = /^(?:\+?8801|01)[3-9]\d{8}$/;
+
 export const orderSchema = z.object({
   customerName: z.string().min(2),
-  phone: z.string().min(10),
+  phone: z
+    .string()
+    .trim()
+    .regex(bangladeshPhoneRegex, "Enter a valid Bangladeshi mobile number"),
   district: z.string().min(2),
   thana: z.string().min(2),
   villageRoad: z.string().min(2),

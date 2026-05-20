@@ -17,6 +17,7 @@ import { MotionReveal } from "@/components/motion-reveal";
 import { ProductCard } from "@/components/product-card";
 import { ReviewSlider } from "@/components/review-slider";
 import { SectionHeading } from "@/components/section-heading";
+import { SeasonalStockCard } from "@/components/seasonal-stock-card";
 import { TrustBadges } from "@/components/trust-badges";
 import { VideoShowcase } from "@/components/video-showcase";
 import { brand } from "@/lib/constants";
@@ -47,6 +48,8 @@ const premiumFeatures: Array<[LucideIcon, string, string]> = [
     "Customer video review slots are built for Facebook/WhatsApp proof and future uploads."
   ]
 ];
+
+const fallbackBatchStock = products.reduce((sum, product) => sum + product.stock, 0);
 
 export default function HomePage() {
   const faqSchema = {
@@ -298,23 +301,7 @@ export default function HomePage() {
             title="Current harvest batch is limited"
             copy="হিমসাগর season ছোট। তাই stock meter, delivery countdown এবং batch-wise dispatch ব্যবহার করা হয়েছে যেন customer clear expectation পান।"
           />
-          <div className="mx-auto mt-10 max-w-3xl rounded-lg bg-ink p-6 text-white shadow-soft dark:bg-black">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <p className="text-3xl font-black">103 boxes left</p>
-                <p className="text-white/70">Next Dhaka dispatch closes tonight 10:00 PM</p>
-              </div>
-              <Link
-                href="/shop"
-                className="rounded-lg bg-mango-500 px-5 py-3 text-center font-black text-ink"
-              >
-                Reserve with COD
-              </Link>
-            </div>
-            <div className="mt-5 h-3 overflow-hidden rounded-full bg-white/10">
-              <div className="h-full w-[64%] rounded-full bg-mango-500" />
-            </div>
-          </div>
+          <SeasonalStockCard fallbackStock={fallbackBatchStock} />
         </div>
       </section>
 
