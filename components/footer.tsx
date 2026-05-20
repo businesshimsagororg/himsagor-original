@@ -26,6 +26,7 @@ export function Footer() {
           <div className="grid gap-2 text-sm text-cream/75">
             <Link href="/shop">Shop Mangoes</Link>
             <Link href="/checkout">Checkout</Link>
+            <Link href="/account">Account</Link>
             <Link href="/track">Order Tracking</Link>
             <Link href="/return-policy">Return Policy</Link>
             <Link href="/privacy-policy">Privacy Policy</Link>
@@ -56,6 +57,10 @@ export function Footer() {
             {point}
           </span>
         ))}
+      </div>
+      <div className="container-soft mt-6 flex flex-col gap-2 border-t border-white/10 pt-5 text-xs text-cream/60 md:flex-row md:items-center md:justify-between">
+        <p>© {new Date().getFullYear()} {brand.name}. All rights reserved.</p>
+        <p>Authentic Satkhira Himsagor Mango | COD | Pan Bangladesh Delivery</p>
       </div>
     </footer>
   );

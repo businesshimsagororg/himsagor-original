@@ -27,10 +27,10 @@ export function FloatingActions() {
             <ShoppingBag size={18} /> Cart {count ? `(${count})` : ""}
           </button>
           <Link
-            href="/checkout"
+            href={count ? "/checkout" : "/shop?cart=required"}
             className="flex flex-1 items-center justify-center rounded-lg bg-mango-500 px-4 py-3 text-sm font-black text-ink"
           >
-            Order Now
+            {count ? "Order Now" : "Add Product"}
           </Link>
         </div>
       </div>

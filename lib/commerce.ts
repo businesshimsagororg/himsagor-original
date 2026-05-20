@@ -5,12 +5,9 @@ export type CartItem = {
   quantity: number;
 };
 
-export type ShippingZone = "dhaka" | "outside-dhaka";
+export type ShippingZone = "bangladesh";
 
-export const shippingFees: Record<ShippingZone, number> = {
-  dhaka: 90,
-  "outside-dhaka": 150
-};
+export const flatShippingFee = 120;
 
 export const coupons = {
   HIMSA100: { label: "৳100 off", type: "flat", value: 100 },
@@ -21,11 +18,7 @@ export function formatTk(amount: number) {
   return `৳${amount.toLocaleString("en-BD")}`;
 }
 
-export function getCartTotals(
-  items: CartItem[],
-  zone: ShippingZone,
-  couponCode?: string
-) {
+export function getCartTotals(items: CartItem[], couponCode?: string) {
   const subtotal = items.reduce((sum, item) => {
     const product = products.find((entry) => entry.id === item.productId);
     return sum + (product ? product.price * item.quantity : 0);
@@ -39,14 +32,14 @@ export function getCartTotals(
       ? coupon.value
       : Math.round((subtotal * coupon.value) / 100)
     : 0;
-  const shipping = subtotal > 2500 ? 0 : shippingFees[zone];
+  const shipping = subtotal === 0 ? 0 : subtotal > 2500 ? 0 : flatShippingFee;
   const total = Math.max(subtotal - discount, 0) + shipping;
 
   return { subtotal, discount, shipping, total, coupon };
 }
 
-export function estimateDelivery(zone: ShippingZone) {
-  return zone === "dhaka" ? "২৪-৪৮ ঘণ্টা" : "২-৪ কর্মদিবস";
+export function estimateDelivery() {
+  return "১-৪ কর্মদিবস";
 }
 
 export function generateOrderId() {

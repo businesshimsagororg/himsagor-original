@@ -13,6 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/reviews",
     "/gallery",
     "/checkout",
+    "/account",
     "/privacy-policy",
     "/return-policy",
     "/terms"

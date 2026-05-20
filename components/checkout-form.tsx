@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import { estimateDelivery, formatTk } from "@/lib/commerce";
 import { products } from "@/lib/products";
 import { useCart } from "@/components/cart-provider";
@@ -10,15 +10,20 @@ export function CheckoutForm() {
   const router = useRouter();
   const {
     items,
+    hydrated,
     totals,
-    zone,
-    setZone,
     couponCode,
     clearCart,
     setOpen
   } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (hydrated && items.length === 0) {
+      router.replace("/shop?cart=required");
+    }
+  }, [hydrated, items.length, router]);
 
   async function submitOrder(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -29,9 +34,11 @@ export function CheckoutForm() {
     const payload = {
       customerName: String(form.get("customerName")),
       phone: String(form.get("phone")),
-      address: String(form.get("address")),
       district: String(form.get("district")),
-      zone,
+      thana: String(form.get("thana")),
+      villageRoad: String(form.get("villageRoad")),
+      address: String(form.get("address")),
+      zone: "bangladesh",
       paymentMethod: String(form.get("paymentMethod")),
       couponCode,
       note: String(form.get("note") || ""),
@@ -52,6 +59,11 @@ export function CheckoutForm() {
       return;
     }
 
+    if (data.paymentUrl) {
+      window.location.href = data.paymentUrl;
+      return;
+    }
+
     clearCart();
     setOpen(false);
     router.push(`/order-success?orderId=${data.id}&total=${data.totals.total}`);
@@ -68,34 +80,25 @@ export function CheckoutForm() {
         <div className="grid gap-4 md:grid-cols-2">
           <Field name="customerName" label="Full Name" placeholder="আপনার নাম" />
           <Field name="phone" label="Phone" placeholder="01577428064" />
-          <Field name="district" label="District" placeholder="Dhaka" />
-          <label className="grid gap-2 text-sm font-bold">
-            Delivery Zone
-            <select
-              value={zone}
-              onChange={(event) => setZone(event.target.value as typeof zone)}
-              className="rounded-lg border border-black/10 bg-cream px-3 py-3 outline-none dark:border-white/10 dark:bg-white/10"
-            >
-              <option value="dhaka">Dhaka City</option>
-              <option value="outside-dhaka">Outside Dhaka</option>
-            </select>
-          </label>
+          <Field name="district" label="District" placeholder="জেলা" />
+          <Field name="thana" label="Thana / Upazila" placeholder="থানা / উপজেলা" />
+          <Field name="villageRoad" label="Village / Road" placeholder="গ্রাম / রোড" />
         </div>
         <label className="mt-4 grid gap-2 text-sm font-bold">
-          Full Address
+          Specific Address
           <textarea
             name="address"
             required
             rows={4}
-            placeholder="House, road, area, landmark"
+            placeholder="বাড়ি নম্বর, landmark, floor, bazar, union বা অন্য detail"
             className="rounded-lg border border-black/10 bg-cream px-3 py-3 outline-none dark:border-white/10 dark:bg-white/10"
           />
         </label>
         <div className="mt-4 grid gap-3 md:grid-cols-3">
           {[
             ["cod", "Cash on Delivery"],
-            ["bkash", "bKash"],
-            ["nagad", "Nagad"]
+            ["bkash_gateway", "Pay Online bKash"],
+            ["nagad_gateway", "Pay Online Nagad"]
           ].map(([value, label]) => (
             <label
               key={value}
@@ -166,7 +169,7 @@ export function CheckoutForm() {
           </div>
         </div>
         <p className="mt-4 text-sm text-white/70">
-          Estimated delivery: {estimateDelivery(zone)}
+          Estimated delivery: {estimateDelivery()} | Flat delivery charge across Bangladesh
         </p>
         <button
           disabled={loading || !items.length}

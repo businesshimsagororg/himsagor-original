@@ -1,12 +1,8 @@
-﻿import { NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 import { supabase } from "@/lib/db";
+import { findMemoryOrder } from "@/lib/memory-store";
 
-const demoStatuses = [
-  "confirmed",
-  "packed",
-  "handed_to_courier",
-  "out_for_delivery"
-];
+const demoStatuses = ["pending", "confirmed", "shipped", "delivered"];
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
@@ -39,13 +35,17 @@ export async function GET(request: Request) {
     return NextResponse.json({ order: data });
   }
 
+  const memoryOrder = findMemoryOrder(orderId, phone);
+  if (memoryOrder) {
+    return NextResponse.json({ order: memoryOrder });
+  }
+
   return NextResponse.json({
     order: {
       id: orderId,
       phone,
       status: demoStatuses[orderId.length % demoStatuses.length],
-      message:
-        "Demo tracking response. Connect Supabase to show live order status."
+      message: "Demo tracking response. Connect Supabase to show live order status."
     }
   });
 }

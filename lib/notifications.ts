@@ -17,6 +17,20 @@ export async function sendOrderNotifications(orderId: string, order: OrderInput)
         message: `${brand.name}: আপনার অর্ডার ${orderId} confirm হয়েছে. Hotline ${brand.phone}`
       })
     }).catch(() => undefined);
+
+    if (process.env.ADMIN_SMS_NUMBER) {
+      await fetch(smsUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${smsKey}`
+        },
+        body: JSON.stringify({
+          to: process.env.ADMIN_SMS_NUMBER,
+          message: `New ${brand.name} order ${orderId}. Customer: ${order.customerName}, ${order.phone}.`
+        })
+      }).catch(() => undefined);
+    }
   }
 
   // Email providers differ by vendor; keep this hook centralized for Resend,

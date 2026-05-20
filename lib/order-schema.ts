@@ -3,10 +3,12 @@
 export const orderSchema = z.object({
   customerName: z.string().min(2),
   phone: z.string().min(10),
-  address: z.string().min(10),
   district: z.string().min(2),
-  zone: z.enum(["dhaka", "outside-dhaka"]),
-  paymentMethod: z.enum(["cod", "bkash", "nagad"]),
+  thana: z.string().min(2),
+  villageRoad: z.string().min(2),
+  address: z.string().min(5),
+  zone: z.literal("bangladesh").default("bangladesh"),
+  paymentMethod: z.enum(["cod", "bkash_gateway", "nagad_gateway"]),
   couponCode: z.string().optional(),
   note: z.string().optional(),
   items: z

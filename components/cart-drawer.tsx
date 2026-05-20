@@ -13,8 +13,6 @@ export function CartDrawer() {
     updateQuantity,
     removeItem,
     totals,
-    zone,
-    setZone,
     couponCode,
     setCouponCode
   } = useCart();
@@ -114,29 +112,10 @@ export function CartDrawer() {
         </div>
 
         <div className="mt-6 rounded-lg bg-white p-4 dark:bg-white/10">
-          <label className="text-sm font-bold">Delivery Zone</label>
-          <div className="mt-2 grid grid-cols-2 gap-2">
-            <button
-              type="button"
-              onClick={() => setZone("dhaka")}
-              className={`rounded-lg px-3 py-2 text-sm font-bold ${
-                zone === "dhaka" ? "bg-mango-500 text-ink" : "bg-cream dark:bg-white/10"
-              }`}
-            >
-              Dhaka
-            </button>
-            <button
-              type="button"
-              onClick={() => setZone("outside-dhaka")}
-              className={`rounded-lg px-3 py-2 text-sm font-bold ${
-                zone === "outside-dhaka"
-                  ? "bg-mango-500 text-ink"
-                  : "bg-cream dark:bg-white/10"
-              }`}
-            >
-              Outside
-            </button>
-          </div>
+          <p className="text-sm font-bold">Flat Bangladesh Delivery</p>
+          <p className="mt-1 text-xs text-ink/60 dark:text-cream/60">
+            Same delivery logic for Dhaka and outside Dhaka. Free shipping over ৳2,500.
+          </p>
           <input
             value={couponCode}
             onChange={(event) => setCouponCode(event.target.value)}
@@ -162,11 +141,11 @@ export function CartDrawer() {
             </div>
           </div>
           <Link
-            href="/checkout"
+            href={cartProducts.length ? "/checkout" : "/shop?cart=required"}
             onClick={() => setOpen(false)}
             className="mt-4 flex w-full items-center justify-center rounded-lg bg-ink px-4 py-3 font-black text-white dark:bg-mango-500 dark:text-ink"
           >
-            Checkout
+            {cartProducts.length ? "Checkout" : "Add Product First"}
           </Link>
         </div>
       </aside>

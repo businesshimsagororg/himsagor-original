@@ -1,5 +1,6 @@
 ﻿import Link from "next/link";
 import { CheckCircle2 } from "lucide-react";
+import { ClearCartOnSuccess } from "@/components/clear-cart-on-success";
 import { PrintButton } from "@/components/print-button";
 import { formatTk } from "@/lib/commerce";
 import { brand } from "@/lib/constants";
@@ -15,6 +16,7 @@ export default async function OrderSuccessPage({
 
   return (
     <section className="section-pad">
+      <ClearCartOnSuccess />
       <div className="container-soft max-w-3xl">
         <div className="rounded-lg bg-white p-8 text-center shadow-soft dark:bg-white/10">
           <CheckCircle2 className="mx-auto text-leaf-700 dark:text-mango-300" size={54} />

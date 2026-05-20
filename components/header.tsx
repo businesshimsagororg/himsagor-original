@@ -13,6 +13,7 @@ const navItems = [
   ["About", "/about"],
   ["Reviews", "/reviews"],
   ["Gallery", "/gallery"],
+  ["Account", "/account"],
   ["Track", "/track"],
   ["FAQ", "/faq"],
   ["Contact", "/contact"]

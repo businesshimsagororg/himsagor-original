@@ -18,6 +18,7 @@ import { ProductCard } from "@/components/product-card";
 import { ReviewSlider } from "@/components/review-slider";
 import { SectionHeading } from "@/components/section-heading";
 import { TrustBadges } from "@/components/trust-badges";
+import { VideoShowcase } from "@/components/video-showcase";
 import { brand } from "@/lib/constants";
 import { faqs } from "@/lib/faqs";
 import { products } from "@/lib/products";
@@ -201,6 +202,8 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      <VideoShowcase />
 
       <section className="section-pad">
         <div className="container-soft grid gap-8 lg:grid-cols-3">

@@ -1,6 +1,8 @@
 ﻿import { NextResponse } from "next/server";
 import { getCartTotals, generateOrderId } from "@/lib/commerce";
 import { supabase } from "@/lib/db";
+import { createPaymentSession } from "@/lib/integrations";
+import { listMemoryOrders, saveMemoryOrder, updateMemoryOrder } from "@/lib/memory-store";
 import { sendOrderNotifications } from "@/lib/notifications";
 import { orderSchema } from "@/lib/order-schema";
 import { products } from "@/lib/products";
@@ -17,8 +19,9 @@ export async function POST(request: Request) {
   }
 
   const order = parsed.data;
-  const totals = getCartTotals(order.items, order.zone, order.couponCode);
+  const totals = getCartTotals(order.items, order.couponCode);
   const id = generateOrderId();
+  const paymentStatus = order.paymentMethod === "cod" ? "cod_pending" : "payment_pending";
 
   if (supabase) {
     const { error } = await supabase.from("orders").insert({
@@ -27,15 +30,18 @@ export async function POST(request: Request) {
       phone: order.phone,
       address: order.address,
       district: order.district,
+      thana: order.thana,
+      village_road: order.villageRoad,
       zone: order.zone,
       payment_method: order.paymentMethod,
+      payment_status: paymentStatus,
       coupon_code: order.couponCode || null,
       note: order.note || null,
       subtotal: totals.subtotal,
       discount: totals.discount,
       shipping: totals.shipping,
       total: totals.total,
-      status: "confirmed"
+      status: "pending"
     });
 
     if (error) {
@@ -56,17 +62,98 @@ export async function POST(request: Request) {
     if (itemError) {
       return NextResponse.json({ error: itemError.message }, { status: 500 });
     }
+  } else {
+    saveMemoryOrder({
+      id,
+      customer_name: order.customerName,
+      phone: order.phone,
+      address: order.address,
+      district: order.district,
+      thana: order.thana,
+      village_road: order.villageRoad,
+      zone: order.zone,
+      payment_method: order.paymentMethod,
+      payment_status: paymentStatus,
+      coupon_code: order.couponCode || null,
+      note: order.note || null,
+      subtotal: totals.subtotal,
+      discount: totals.discount,
+      shipping: totals.shipping,
+      total: totals.total,
+      status: "pending",
+      created_at: new Date().toISOString(),
+      order_items: order.items
+    });
   }
 
   await sendOrderNotifications(id, order);
 
+  const payment =
+    order.paymentMethod === "cod"
+      ? null
+      : await createPaymentSession({
+          provider: order.paymentMethod,
+          orderId: id,
+          amount: totals.total,
+          callbackBaseUrl: new URL(request.url).origin
+        });
+
   return NextResponse.json({
     id,
-    status: "confirmed",
+    status: "pending",
     paymentMethod: order.paymentMethod,
+    paymentStatus,
+    paymentUrl: payment?.paymentUrl,
     totals,
     message: "Order confirmed"
   });
+}
+
+export async function PATCH(request: Request) {
+  const { searchParams } = new URL(request.url);
+  const token = searchParams.get("token");
+
+  if (token !== process.env.ADMIN_TOKEN) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
+
+  const body = await request.json();
+  const { orderId, status, courierPartner, trackingNumber } = body;
+
+  if (!orderId) {
+    return NextResponse.json({ error: "Order ID required" }, { status: 400 });
+  }
+
+  if (!supabase) {
+    const order = updateMemoryOrder(orderId, {
+      status,
+      courier_partner: courierPartner,
+      tracking_number: trackingNumber
+    });
+    return NextResponse.json({
+      ok: true,
+      demo: true,
+      order
+    });
+  }
+
+  const updates: Record<string, string> = {};
+  if (status) updates.status = status;
+  if (courierPartner) updates.courier_partner = courierPartner;
+  if (trackingNumber) updates.tracking_number = trackingNumber;
+
+  const { data, error } = await supabase
+    .from("orders")
+    .update(updates)
+    .eq("id", orderId)
+    .select("*")
+    .single();
+
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+
+  return NextResponse.json({ ok: true, order: data });
 }
 
 export async function GET(request: Request) {
@@ -78,7 +165,7 @@ export async function GET(request: Request) {
   }
 
   if (!supabase) {
-    return NextResponse.json({ orders: [] });
+    return NextResponse.json({ orders: listMemoryOrders() });
   }
 
   const { data, error } = await supabase

@@ -14,6 +14,7 @@ import { products } from "@/lib/products";
 
 type CartContextValue = {
   items: CartItem[];
+  hydrated: boolean;
   isOpen: boolean;
   zone: ShippingZone;
   couponCode: string;
@@ -32,8 +33,9 @@ const CartContext = createContext<CartContextValue | null>(null);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const [hydrated, setHydrated] = useState(false);
   const [isOpen, setOpen] = useState(false);
-  const [zone, setZone] = useState<ShippingZone>("dhaka");
+  const [zone, setZone] = useState<ShippingZone>("bangladesh");
   const [couponCode, setCouponCode] = useState("");
 
   useEffect(() => {
@@ -41,6 +43,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     if (stored) {
       setItems(JSON.parse(stored));
     }
+    setHydrated(true);
   }, []);
 
   useEffect(() => {
@@ -77,12 +80,13 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const clearCart = useCallback(() => setItems([]), []);
-  const totals = getCartTotals(items, zone, couponCode);
+  const totals = getCartTotals(items, couponCode);
   const count = items.reduce((sum, item) => sum + item.quantity, 0);
 
   const value = useMemo(
     () => ({
       items,
+      hydrated,
       isOpen,
       zone,
       couponCode,
@@ -96,7 +100,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       setCouponCode,
       clearCart
     }),
-    [addItem, couponCode, count, isOpen, items, removeItem, totals, updateQuantity, zone, clearCart]
+    [addItem, couponCode, count, hydrated, isOpen, items, removeItem, totals, updateQuantity, zone, clearCart]
   );
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

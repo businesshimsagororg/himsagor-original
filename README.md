@@ -10,6 +10,8 @@ Premium, production-shaped e-commerce website for selling authentic Satkhira Him
 - Framer Motion
 - Supabase-ready order storage
 - COD, bKash, Nagad checkout flow
+- bKash/Nagad gateway-ready payment hooks
+- Admin order status and courier booking actions
 - SEO metadata, sitemap, robots, product schema, FAQ schema
 
 ## Local Setup
@@ -34,6 +36,16 @@ Copy `.env.example` to `.env.local` and set:
 - `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `ADMIN_TOKEN`
+- `ADMIN_SMS_NUMBER`
+- `BKASH_CHECKOUT_URL`
+- `NAGAD_CHECKOUT_URL`
+- `PATHAO_COURIER_API_URL`
+- `PATHAO_COURIER_API_KEY`
+- `STEADFAST_COURIER_API_URL`
+- `STEADFAST_COURIER_API_KEY`
+- `REDX_COURIER_API_URL`
+- `REDX_COURIER_API_KEY`
+- `NEXT_PUBLIC_ORCHARD_VIDEO_URL`
 - optional SMS/email provider keys
 
 ## Database
@@ -43,6 +55,14 @@ Run `supabase/schema.sql` in your Supabase SQL editor. Without Supabase env vars
 ## Admin
 
 Visit `/admin`, enter `ADMIN_TOKEN`, and load orders. Extend status updates, courier exports, and inventory editing from this base.
+
+The dashboard supports one-click status movement:
+
+```text
+Pending -> Confirmed -> Shipped -> Delivered
+```
+
+Courier buttons are ready for Pathao, Steadfast, and RedX credentials. Without API keys, demo tracking numbers are generated.
 
 ## Deployment
 
@@ -58,7 +78,9 @@ Visit `/admin`, enter `ADMIN_TOKEN`, and load orders. Extend status updates, cou
 - Cash on Delivery
 - No advance payment
 - Pan Bangladesh delivery
-- Dhaka/outside Dhaka shipping fee logic
+- Flat Bangladesh delivery fee logic
 - Coupon support: `HIMSA100`, `FAMILY5`
 - Mandatory unboxing video notice for complaints
 - Premium gift and family package catalog
+- Customer profile, order history, saved address schema, wishlist schema
+- Review schema, product schema, breadcrumb schema, sitemap, Open Graph, Facebook Pixel, and Google Analytics hooks

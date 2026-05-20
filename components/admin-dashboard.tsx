@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { products } from "@/lib/products";
 
+const statuses = ["pending", "confirmed", "shipped", "delivered"];
+const couriers = ["pathao", "steadfast", "redx"];
+
 export function AdminDashboard() {
   const [token, setToken] = useState("");
   const [orders, setOrders] = useState<Array<Record<string, string | number>>>([]);
@@ -18,6 +21,32 @@ export function AdminDashboard() {
     }
     setOrders(data.orders || []);
     setMessage(data.orders?.length ? "Live orders loaded." : "No orders yet or Supabase is not connected.");
+  }
+
+  async function updateOrder(orderId: string, status: string) {
+    const response = await fetch(`/api/orders?token=${encodeURIComponent(token)}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ orderId, status })
+    });
+    const data = await response.json();
+    setMessage(response.ok ? `Order ${orderId} marked ${status}.` : data.error || "Update failed");
+    await loadOrders();
+  }
+
+  async function sendToCourier(orderId: string, partner: string) {
+    const response = await fetch(`/api/courier/create?token=${encodeURIComponent(token)}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ orderId, partner })
+    });
+    const data = await response.json();
+    setMessage(
+      response.ok
+        ? `Sent to ${partner}. Tracking: ${data.booking?.trackingNumber}`
+        : data.error || "Courier booking failed"
+    );
+    await loadOrders();
   }
 
   return (
@@ -38,7 +67,7 @@ export function AdminDashboard() {
       </div>
       <p className="mt-4 text-sm text-ink/70 dark:text-cream/70">{message}</p>
       <div className="mt-6 overflow-x-auto">
-        <table className="w-full min-w-[720px] text-left text-sm">
+        <table className="w-full min-w-[980px] text-left text-sm">
           <thead>
             <tr className="border-b border-black/10 dark:border-white/10">
               <th className="py-3">Order</th>
@@ -46,6 +75,9 @@ export function AdminDashboard() {
               <th>Phone</th>
               <th>Total</th>
               <th>Status</th>
+              <th>Payment</th>
+              <th>Courier</th>
+              <th>One-click actions</th>
               <th>Created</th>
             </tr>
           </thead>
@@ -57,6 +89,37 @@ export function AdminDashboard() {
                 <td>{order.phone}</td>
                 <td>৳{order.total}</td>
                 <td>{order.status}</td>
+                <td>{order.payment_status || order.payment_method}</td>
+                <td>
+                  {order.courier_partner || "Not sent"}
+                  {order.tracking_number ? (
+                    <span className="block text-xs text-ink/60 dark:text-cream/60">
+                      {order.tracking_number}
+                    </span>
+                  ) : null}
+                </td>
+                <td>
+                  <div className="flex flex-wrap gap-1">
+                    {statuses.map((status) => (
+                      <button
+                        key={status}
+                        onClick={() => updateOrder(String(order.id), status)}
+                        className="rounded-full bg-cream px-2 py-1 text-xs font-bold dark:bg-white/10"
+                      >
+                        {status}
+                      </button>
+                    ))}
+                    {couriers.map((partner) => (
+                      <button
+                        key={partner}
+                        onClick={() => sendToCourier(String(order.id), partner)}
+                        className="rounded-full bg-mango-500 px-2 py-1 text-xs font-black text-ink"
+                      >
+                        {partner}
+                      </button>
+                    ))}
+                  </div>
+                </td>
                 <td>{String(order.created_at || "").slice(0, 10)}</td>
               </tr>
             ))}
