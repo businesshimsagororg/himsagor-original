@@ -1,5 +1,5 @@
 ﻿import type { Metadata } from "next";
-import { Hind_Siliguri, Noto_Serif_Bengali } from "next/font/google";
+import { Hind_Siliguri } from "next/font/google";
 import Script from "next/script";
 import "@/app/globals.css";
 import { Analytics } from "@/components/analytics";
@@ -18,12 +18,6 @@ const hindSiliguri = Hind_Siliguri({
   display: "swap"
 });
 
-const notoSerifBengali = Noto_Serif_Bengali({
-  subsets: ["bengali", "latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
-  variable: "--font-bangla-serif",
-  display: "swap"
-});
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
@@ -67,7 +61,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="bn" suppressHydrationWarning>
-      <body className={`${hindSiliguri.variable} ${notoSerifBengali.variable} font-sans antialiased`}>
+      <body className={`${hindSiliguri.variable} font-sans antialiased`}>
         <ThemeProvider>
           <CartProvider>
             <Header />

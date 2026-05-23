@@ -15,12 +15,15 @@
   gallery: string[];
   taste: string[];
   bestFor: string[];
+  reviewCount?: number;
+  shortDescription: string;
+  storageAdvice: string;
 };
 
 const productImages = [
   "https://images.unsplash.com/photo-1553279768-865429fa0078?auto=format&fit=crop&w=1400&q=90",
   "https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?auto=format&fit=crop&w=1400&q=90",
-  "https://images.unsplash.com/photo-1623934802699-3d6ca8f84914?auto=format&fit=crop&w=1400&q=90"
+  "https://images.unsplash.com/photo-1605027990121-cbae9e0642df?auto=format&fit=crop&w=1400&q=90"
 ];
 
 export const products: ProductPackage[] = [
@@ -34,14 +37,17 @@ export const products: ProductPackage[] = [
     compareAt: 890,
     badge: "Starter Pick",
     stock: 42,
-    deliveryEstimate: "Dhaka 24-48h, Outside Dhaka 2-4 days",
+    deliveryEstimate: "সারা বাংলাদেশে সাধারণত ১-৪ কর্মদিবস",
     packaging: "Double-layer ventilated mango carton",
     description:
       "ছোট পরিবার বা প্রথমবার ট্রাই করার জন্য বাছাই করা মিষ্টি, আঁশবিহীন সাতক্ষীরার হিমসাগর।",
     image: productImages[0],
     gallery: productImages,
     taste: ["Rich sweet aroma", "Low fiber", "Creamy pulp", "Naturally ripened"],
-    bestFor: ["Small families", "Fruit lovers", "First order"]
+    bestFor: ["Small families", "Fruit lovers", "First order"],
+    reviewCount: 7,
+    shortDescription: "ছোট পরিবারের জন্য fresh trial box.",
+    storageAdvice: "পাকা আম ফ্রিজে রাখুন, আধা-পাকা আম ১-২ দিন room temperature-এ রাখুন।"
   },
   {
     id: "box-10kg",
@@ -53,14 +59,17 @@ export const products: ProductPackage[] = [
     compareAt: 1780,
     badge: "Best Value",
     stock: 31,
-    deliveryEstimate: "Dhaka 24-48h, Outside Dhaka 2-4 days",
+    deliveryEstimate: "সারা বাংলাদেশে সাধারণত ১-৪ কর্মদিবস",
     packaging: "Family-grade reinforced carton with foam partition",
     description:
       "ফ্যামিলি অর্ডারের জন্য সবচেয়ে জনপ্রিয় প্যাক। বেশি পরিমাণে নিলে প্রতি কেজিতে সাশ্রয়।",
     image: productImages[1],
     gallery: productImages,
     taste: ["Deep mango fragrance", "Balanced sweetness", "Soft golden flesh"],
-    bestFor: ["Families", "Monthly fruit plan", "Sharing"]
+    bestFor: ["Families", "Monthly fruit plan", "Sharing"],
+    reviewCount: 11,
+    shortDescription: "পরিবারের জন্য সবচেয়ে value-focused প্যাক।",
+    storageAdvice: "Carton খুলে বাতাস চলাচল করে এমন জায়গায় রাখুন।"
   },
   {
     id: "gift-premium",
@@ -72,14 +81,17 @@ export const products: ProductPackage[] = [
     compareAt: 1450,
     badge: "Gift Ready",
     stock: 18,
-    deliveryEstimate: "Dhaka 24-48h, Outside Dhaka 2-4 days",
+    deliveryEstimate: "সারা বাংলাদেশে সাধারণত ১-৪ কর্মদিবস",
     packaging: "Premium rigid gift box, ribbon, card, and protective nest",
     description:
       "আত্মীয়, ক্লায়েন্ট বা অফিস গিফটের জন্য প্রিমিয়াম প্যাকেজিংসহ নির্বাচিত বড় সাইজের আম।",
     image: productImages[2],
     gallery: productImages,
     taste: ["Elegant sweetness", "Fragrant", "Smooth pulp"],
-    bestFor: ["Gift buyers", "Corporate orders", "Premium customers"]
+    bestFor: ["Gift buyers", "Corporate orders", "Premium customers"],
+    reviewCount: 5,
+    shortDescription: "Gift-ready প্যাকেজিংসহ বাছাইকৃত আম।",
+    storageAdvice: "Gift delivery-এর পর box খুলে আম আলাদা করে রাখলে freshness ভালো থাকে।"
   },
   {
     id: "jumbo-15kg",
@@ -91,14 +103,17 @@ export const products: ProductPackage[] = [
     compareAt: 2670,
     badge: "Bulk Save",
     stock: 12,
-    deliveryEstimate: "Dhaka 24-48h, Outside Dhaka 2-4 days",
+    deliveryEstimate: "সারা বাংলাদেশে সাধারণত ১-৪ কর্মদিবস",
     packaging: "Heavy-duty bulk carton with airflow and shock protection",
     description:
       "বড় পরিবার, অফিস বা শেয়ার অর্ডারের জন্য উচ্চমানের হিমসাগর বাল্ক প্যাক।",
     image: productImages[0],
     gallery: productImages,
     taste: ["Intense aroma", "Naturally sweet", "Juicy and fiber-light"],
-    bestFor: ["Large families", "Office teams", "Bulk buyers"]
+    bestFor: ["Large families", "Office teams", "Bulk buyers"],
+    reviewCount: 3,
+    shortDescription: "Bulk order, office sharing এবং বড় পরিবারের জন্য।",
+    storageAdvice: "Bulk box খুলে আমগুলো এক স্তরে ছড়িয়ে রাখুন।"
   }
 ];
 

@@ -33,7 +33,7 @@ export default function ContactPage() {
               <p className="font-black">Delivery Coverage Map</p>
               <div className="mt-4 grid h-56 place-items-center rounded-lg bg-[linear-gradient(135deg,#edf8ee,#fff1a8)] text-center text-ink">
                 <p className="max-w-xs font-black">
-                  Pan Bangladesh courier coverage with Dhaka priority dispatch
+                  Pan Bangladesh courier coverage with address confirmation
                 </p>
               </div>
             </div>

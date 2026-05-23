@@ -36,14 +36,21 @@ export function ProductCard({ product }: { product: ProductPackage }) {
         <div className="mb-3 flex items-start justify-between gap-3">
           <div>
             <h3 className="text-lg font-black">{product.banglaName}</h3>
-            <div className="mt-1 flex items-center gap-1 text-xs font-bold text-mango-700 dark:text-mango-300">
-              {Array.from({ length: 5 }).map((_, index) => (
-                <Star key={index} size={13} fill="currentColor" />
-              ))}
-              <span className="ml-1 text-ink/55 dark:text-cream/60">24 reviews</span>
-            </div>
+            {product.reviewCount ? (
+              <div className="mt-1 flex items-center gap-1 text-xs font-bold text-mango-700 dark:text-mango-300">
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <Star key={index} size={13} fill="currentColor" />
+                ))}
+                <span className="ml-1 text-ink/55 dark:text-cream/60">
+                  {product.reviewCount} reviews
+                </span>
+              </div>
+            ) : null}
             <p className="text-sm text-ink/60 dark:text-cream/60">
               {product.weightKg} KG | {product.packaging}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-ink/70 dark:text-cream/70">
+              {product.shortDescription}
             </p>
           </div>
           <div className="text-right">
@@ -55,14 +62,8 @@ export function ProductCard({ product }: { product: ProductPackage }) {
             ) : null}
           </div>
         </div>
-        <div className="mb-4 h-2 overflow-hidden rounded-full bg-mango-100">
-          <div
-            className="h-full rounded-full bg-leaf-500"
-            style={{ width: `${Math.max(16, Math.min(product.stock * 2, 100))}%` }}
-          />
-        </div>
-        <p className="mb-4 text-sm font-semibold text-leaf-700 dark:text-mango-300">
-          Only {product.stock} boxes in current harvest batch
+        <p className="mb-4 rounded-lg bg-cream px-3 py-3 text-sm font-semibold text-ink/70 dark:bg-white/10 dark:text-cream/70">
+          Delivery estimate: {product.deliveryEstimate}
         </p>
         <div className="mb-4 grid grid-cols-2 gap-2 text-xs font-bold text-ink/65 dark:text-cream/65">
           <span className="rounded-md bg-mango-100 px-2 py-2 text-center text-ink">Carbide-free</span>
@@ -81,7 +82,7 @@ export function ProductCard({ product }: { product: ProductPackage }) {
             onClick={() => addItem(product.id)}
             className="flex min-h-11 items-center justify-center gap-2 rounded-lg bg-ink px-3 py-3 text-sm font-black text-white transition hover:bg-leaf-700 dark:bg-mango-500 dark:text-ink"
           >
-            <Zap size={17} /> Buy
+            <Zap size={17} /> Buy Now
           </button>
         </div>
       </div>

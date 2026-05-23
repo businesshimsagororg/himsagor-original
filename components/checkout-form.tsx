@@ -1,7 +1,7 @@
 ﻿"use client";
 
 import { useRouter } from "next/navigation";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, type InputHTMLAttributes, useEffect, useState } from "react";
 import { estimateDelivery, formatTk } from "@/lib/commerce";
 import { products } from "@/lib/products";
 import { useCart } from "@/components/cart-provider";
@@ -77,10 +77,33 @@ export function CheckoutForm() {
         <p className="mb-6 text-ink/70 dark:text-cream/70">
           Cash on Delivery available. কোনো advance payment লাগবে না।
         </p>
+        <div className="mb-6 grid gap-3 md:grid-cols-3">
+          <div className="rounded-lg bg-cream p-3 text-sm dark:bg-white/10">
+            <p className="font-black">Delivery</p>
+            <p className="mt-1 text-ink/65 dark:text-cream/65">{estimateDelivery()}</p>
+          </div>
+          <div className="rounded-lg bg-cream p-3 text-sm dark:bg-white/10">
+            <p className="font-black">Shipping</p>
+            <p className="mt-1 text-ink/65 dark:text-cream/65">
+              Flat charge: {formatTk(totals.shipping)}
+            </p>
+          </div>
+          <div className="rounded-lg bg-cream p-3 text-sm dark:bg-white/10">
+            <p className="font-black">Support</p>
+            <p className="mt-1 text-ink/65 dark:text-cream/65">Unboxing video required</p>
+          </div>
+        </div>
 
         <div className="grid gap-4 md:grid-cols-2">
           <Field name="customerName" label="Full Name" placeholder="আপনার নাম" />
-          <Field name="phone" label="Phone" placeholder="01577428064" />
+          <Field
+            name="phone"
+            label="Phone"
+            placeholder="01577428064"
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+          />
           <Field name="district" label="District" placeholder="জেলা" />
           <Field name="thana" label="Thana / Upazila" placeholder="থানা / উপজেলা" />
           <Field name="villageRoad" label="Village / Road" placeholder="গ্রাম / রোড" />
@@ -189,11 +212,17 @@ export function CheckoutForm() {
 function Field({
   name,
   label,
-  placeholder
+  placeholder,
+  type = "text",
+  inputMode,
+  autoComplete
 }: {
   name: string;
   label: string;
   placeholder: string;
+  type?: string;
+  inputMode?: InputHTMLAttributes<HTMLInputElement>["inputMode"];
+  autoComplete?: string;
 }) {
   return (
     <label className="grid gap-2 text-sm font-bold">
@@ -201,6 +230,9 @@ function Field({
       <input
         required
         name={name}
+        type={type}
+        inputMode={inputMode}
+        autoComplete={autoComplete}
         placeholder={placeholder}
         className="rounded-lg border border-black/10 bg-cream px-3 py-3 outline-none dark:border-white/10 dark:bg-white/10"
       />

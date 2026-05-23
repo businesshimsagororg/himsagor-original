@@ -1,14 +1,12 @@
 ﻿import {
   Banknote,
-  CheckCircle2,
   PackageCheck,
   ShieldCheck,
-  Sprout,
   Truck
 } from "lucide-react";
 import { trustPoints } from "@/lib/constants";
 
-const icons = [ShieldCheck, Sprout, CheckCircle2, Banknote, CheckCircle2, PackageCheck, Truck, ShieldCheck];
+const icons = [ShieldCheck, Banknote, Truck, PackageCheck];
 
 export function TrustBadges() {
   return (

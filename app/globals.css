@@ -29,7 +29,7 @@ body {
 
 h1,
 h2 {
-  font-family: var(--font-bangla-serif), "Noto Serif Bengali", Georgia, serif;
+  font-family: var(--font-bangla-sans), "Hind Siliguri", system-ui, sans-serif;
   letter-spacing: 0;
 }
 

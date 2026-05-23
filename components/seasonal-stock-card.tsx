@@ -23,14 +23,16 @@ export function SeasonalStockCard({ fallbackStock }: { fallbackStock: number }) 
     <div className="mx-auto mt-10 max-w-3xl rounded-lg bg-ink p-6 text-white shadow-soft dark:bg-black">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <p className="text-3xl font-black">{stock} boxes left</p>
-          <p className="text-white/70">Next dispatch closes tonight 10:00 PM</p>
+          <p className="text-3xl font-black">Latest listed stock: {stock} boxes</p>
+          <p className="text-white/70">
+            Final availability is confirmed by phone or WhatsApp after order.
+          </p>
         </div>
         <Link
           href="/shop"
           className="rounded-lg bg-mango-500 px-5 py-3 text-center font-black text-ink"
         >
-          Reserve with COD
+          Order with COD
         </Link>
       </div>
       <div className="mt-5 h-3 overflow-hidden rounded-full bg-white/10">

@@ -11,11 +11,11 @@ export default function ReturnPolicyPage() {
     <LegalPage
       title="Return Policy"
       sections={[
-        ["Mandatory Unboxing Video", "Delivery damage, rotten fruit, or wrong package complaints require a clear unboxing video from the moment the package is opened."],
-        ["Complaint Window", "Customers must contact us within 12 hours of receiving delivery with order ID, phone number, photos, and video proof."],
-        ["Resolution", "Depending on evidence and issue type, we may offer replacement, partial refund, coupon, or courier claim support."],
-        ["Not Eligible", "Taste preference, delayed storage, heat exposure after delivery, or complaints without unboxing video are not eligible for guaranteed compensation."],
-        ["Freshness Care", "Keep mangoes in a dry, ventilated place. Refrigerate ripe mangoes to slow further ripening."]
+        ["Unboxing Video", "Delivery damage, rotten fruit, or wrong package complaints need a clear unboxing video from the moment the package is opened."],
+        ["Complaint Window", "Please contact us within 12 hours of delivery with order ID, phone number, photos, and video proof."],
+        ["Resolution", "After review, we may offer replacement, partial refund, coupon, or courier claim support depending on the issue."],
+        ["Freshness Care", "Keep mangoes in a dry, ventilated place. Refrigerate ripe mangoes to slow further ripening."],
+        ["Before You Claim", "Taste preference or storage damage after delivery may not qualify for compensation, but our support team will still guide you."]
       ]}
     />
   );

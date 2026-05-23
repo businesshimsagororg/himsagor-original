@@ -40,10 +40,10 @@ const config: Config = {
           "sans-serif"
         ],
         display: [
-          "Noto Serif Bengali",
-          "var(--font-bangla-serif)",
-          "Georgia",
-          "serif"
+          "Hind Siliguri",
+          "var(--font-bangla-sans)",
+          "system-ui",
+          "sans-serif"
         ]
       }
     }

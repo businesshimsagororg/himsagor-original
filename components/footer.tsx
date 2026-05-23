@@ -17,15 +17,14 @@ export function Footer() {
             </div>
           </div>
           <p className="max-w-md text-sm leading-7 text-cream/70">
-            Premium Satkhira Himsagor mangoes delivered across Bangladesh with
-            COD, careful grading, and unboxing-video supported complaint review.
+            Satkhira Himsagor delivered across Bangladesh with COD, careful
+            packing, and clear support for delivery issues.
           </p>
         </div>
         <div>
           <p className="mb-4 font-bold">Quick Links</p>
           <div className="grid gap-2 text-sm text-cream/75">
             <Link href="/shop">Shop Mangoes</Link>
-            <Link href="/checkout">Checkout</Link>
             <Link href="/account">Account</Link>
             <Link href="/track">Order Tracking</Link>
             <Link href="/return-policy">Return Policy</Link>
@@ -45,6 +44,8 @@ export function Footer() {
             <p className="flex items-center gap-2">
               <ShieldCheck size={16} /> No advance payment required
             </p>
+            <p>{brand.address}</p>
+            <p>Support hours: 9:00 AM - 10:00 PM</p>
           </div>
         </div>
       </div>

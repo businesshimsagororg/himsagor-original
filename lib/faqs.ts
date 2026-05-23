@@ -2,12 +2,12 @@
   {
     question: "কত দিনে delivery পাবো?",
     answer:
-      "ঢাকা শহরে সাধারণত ২৪-৪৮ ঘণ্টা এবং ঢাকার বাইরে ২-৪ কর্মদিবস লাগে। মৌসুমের চাপ বা কুরিয়ার রুট অনুযায়ী সময় সামান্য পরিবর্তন হতে পারে।"
+      "সাধারণত ১-৪ কর্মদিবসের মধ্যে delivery হয়। জেলা, courier route এবং মৌসুমের চাপ অনুযায়ী সময় সামান্য পরিবর্তন হতে পারে।"
   },
   {
     question: "আম কি carbide free?",
     answer:
-      "হ্যাঁ। আমরা কার্বাইড ব্যবহার করি না। বাগান থেকে সংগ্রহের পর প্রাকৃতিকভাবে পরিপক্ক আম প্যাক করা হয়।"
+      "হ্যাঁ। আমরা carbide ব্যবহার করি না। বাগান থেকে বাছাই করা পরিপক্ক আম careful packing করে পাঠানো হয়।"
   },
   {
     question: "COD আছে?",
@@ -27,17 +27,17 @@
   {
     question: "আম কোথা থেকে আসে?",
     answer:
-      "আম আসে সাতক্ষীরার নির্বাচিত হিমসাগর বাগান থেকে। গ্রেডিং শেষে ঢাকা fulfillment hub থেকে ডেলিভারি করা হয়।"
+      "আম আসে সাতক্ষীরার নির্বাচিত হিমসাগর বাগান থেকে। Grade, size এবং maturity check করার পর delivery-ready packing করা হয়।"
   },
   {
     question: "Delivery damage হলে কি হবে?",
     answer:
-      "ডেলিভারি রিসিভ করার সময় unboxing video mandatory. ভিডিওসহ অভিযোগ করলে আমরা দ্রুত replacement/partial refund review করি।"
+      "ডেলিভারি রিসিভ করার সময় unboxing video রাখুন। ভিডিওসহ জানালে আমরা order condition দেখে replacement বা partial refund review করি।"
   },
   {
     question: "Return policy কি?",
     answer:
-      "পচা, অতিরিক্ত damaged বা ভুল প্যাকেজ পেলে delivery-এর ১২ ঘণ্টার মধ্যে unboxing videoসহ জানাতে হবে।"
+      "পচা, অতিরিক্ত damaged বা ভুল প্যাকেজ পেলে delivery-এর ১২ ঘণ্টার মধ্যে unboxing videoসহ support-এ জানান।"
   },
   {
     question: "কিভাবে fresh রাখা হয়?",
@@ -52,6 +52,16 @@
   {
     question: "ঢাকার বাইরে কি delivery হয়?",
     answer:
-      "হ্যাঁ, pan Bangladesh delivery আছে। জেলা শহরগুলোতে courier coverage অনুযায়ী delivery হয়।"
+      "হ্যাঁ, pan Bangladesh delivery আছে। Courier coverage অনুযায়ী আপনার district/thana confirm করা হয়।"
+  },
+  {
+    question: "Order confirm করতে call আসবে কি?",
+    answer:
+      "হ্যাঁ। Order place করার পর name, phone, address, package এবং payment method confirm করার জন্য support team যোগাযোগ করতে পারে।"
+  },
+  {
+    question: "Bulk বা corporate order নেওয়া হয়?",
+    answer:
+      "হ্যাঁ। বড় family order, office order বা gift order-এর জন্য phone/WhatsApp-এ package এবং delivery plan confirm করা যাবে।"
   }
 ];

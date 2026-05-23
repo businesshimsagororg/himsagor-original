@@ -55,20 +55,7 @@ export default async function ProductDetailsPage({ params }: ProductPageProps) {
       price: product.price,
       availability: "https://schema.org/InStock",
       url: `${siteUrl}/product/${product.slug}`
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5",
-      reviewCount: "24"
-    },
-    review: [
-      {
-        "@type": "Review",
-        reviewRating: { "@type": "Rating", ratingValue: "5" },
-        author: { "@type": "Person", name: "Verified buyer" },
-        reviewBody: "Fresh, sweet, and well packed Satkhira Himsagor mango."
-      }
-    ]
+    }
   };
 
   const breadcrumbSchema = {
@@ -139,6 +126,8 @@ export default async function ProductDetailsPage({ params }: ProductPageProps) {
               <Info label="Harvest" value="Current seasonal batch" />
               <Info label="Delivery" value={product.deliveryEstimate} />
               <Info label="Packaging" value={product.packaging} />
+              <Info label="Storage" value={product.storageAdvice} />
+              <Info label="Best For" value={product.bestFor.join(", ")} />
             </div>
             <div className="mt-8 rounded-lg bg-white p-5 shadow-sm dark:bg-white/10">
               <h2 className="text-xl font-black">Taste Profile</h2>

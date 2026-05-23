@@ -8,7 +8,7 @@
     "https://facebook.com/himsagororiginal",
   tagline: "সাতক্ষীরার বাগান থেকে সরাসরি আপনার ঘরে",
   email: "care@himsagororiginal.com",
-  address: "Satkhira Orchard Desk, Dhaka Fulfillment Hub, Bangladesh"
+  address: "Satkhira sourcing desk, Dhaka online fulfillment, Bangladesh"
 };
 
 function normalizeSiteUrl(value: string | undefined) {
@@ -30,18 +30,14 @@ export const siteUrl = normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL);
 
 export const trustPoints = [
   "100% Authentic Satkhira Himsagor",
-  "No Carbide Used",
-  "Fresh From Orchard",
-  "Cash on Delivery Available",
   "No Advance Payment",
-  "Premium Packaging",
-  "Safe Home Delivery",
-  "Customer Satisfaction Priority"
+  "Cash on Delivery Available",
+  "Careful Delivery Packaging"
 ];
 
 export const galleryImages = [
   {
-    src: "https://images.unsplash.com/photo-1623934802699-3d6ca8f84914?auto=format&fit=crop&w=1200&q=85",
+    src: "https://images.unsplash.com/photo-1605027990121-cbae9e0642df?auto=format&fit=crop&w=1200&q=85",
     alt: "Fresh mangoes arranged for premium packaging"
   },
   {

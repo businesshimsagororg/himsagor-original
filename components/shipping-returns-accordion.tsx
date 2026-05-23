@@ -7,17 +7,20 @@ const items = [
   {
     title: "Shipping timeline",
     icon: Truck,
-    copy: "ঢাকা ও ঢাকার বাইরে একই flat delivery logic. সাধারণত ১-৪ কর্মদিবসের মধ্যে dispatch route অনুযায়ী delivery হয়."
+    copy:
+      "সারা বাংলাদেশে একই delivery flow. সাধারণত ১-৪ কর্মদিবসের মধ্যে courier route অনুযায়ী delivery হয়."
   },
   {
     title: "Freshness guarantee",
     icon: PackageCheck,
-    copy: "প্রতিটি box packing-এর আগে visual grading করা হয়. Ventilated carton ব্যবহার করা হয় যাতে আম travel-friendly থাকে."
+    copy:
+      "প্রতিটি box packing-এর আগে visual grading করা হয়. Ventilated carton ব্যবহার করা হয় যাতে আম travel-friendly থাকে."
   },
   {
     title: "Damage or return claim",
     icon: RotateCcw,
-    copy: "Delivery damage বা rotten claim-এর জন্য package খোলার সময় clear unboxing video mandatory. Delivery-এর ১২ ঘণ্টার মধ্যে জানাতে হবে."
+    copy:
+      "Delivery damage বা rotten claim-এর জন্য package খোলার সময় clear unboxing video mandatory. Delivery-এর ১২ ঘণ্টার মধ্যে জানালে support team review করবে."
   }
 ];
 
@@ -57,4 +60,3 @@ export function ShippingReturnsAccordion() {
     </div>
   );
 }
-
