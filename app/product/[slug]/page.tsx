@@ -6,6 +6,7 @@ import { ProductCard } from "@/components/product-card";
 import { ProductDetailActions } from "@/components/product-detail-actions";
 import { ReviewSlider } from "@/components/review-slider";
 import { SectionHeading } from "@/components/section-heading";
+import { ShippingReturnsAccordion } from "@/components/shipping-returns-accordion";
 import { TrustBadges } from "@/components/trust-badges";
 import { formatTk } from "@/lib/commerce";
 import { getProductBySlug, products } from "@/lib/products";
@@ -132,6 +133,7 @@ export default async function ProductDetailsPage({ params }: ProductPageProps) {
               ) : null}
             </div>
             <ProductDetailActions productId={product.id} />
+            <ShippingReturnsAccordion />
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
               <Info label="Origin" value="Satkhira orchard, Bangladesh" />
               <Info label="Harvest" value="Current seasonal batch" />

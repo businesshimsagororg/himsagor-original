@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ShoppingCart, Zap } from "lucide-react";
+import { ShoppingCart, Star, Zap } from "lucide-react";
 import { formatTk } from "@/lib/commerce";
 import type { ProductPackage } from "@/lib/products";
 import { useCart } from "@/components/cart-provider";
@@ -36,6 +36,12 @@ export function ProductCard({ product }: { product: ProductPackage }) {
         <div className="mb-3 flex items-start justify-between gap-3">
           <div>
             <h3 className="text-lg font-black">{product.banglaName}</h3>
+            <div className="mt-1 flex items-center gap-1 text-xs font-bold text-mango-700 dark:text-mango-300">
+              {Array.from({ length: 5 }).map((_, index) => (
+                <Star key={index} size={13} fill="currentColor" />
+              ))}
+              <span className="ml-1 text-ink/55 dark:text-cream/60">24 reviews</span>
+            </div>
             <p className="text-sm text-ink/60 dark:text-cream/60">
               {product.weightKg} KG | {product.packaging}
             </p>
@@ -58,18 +64,22 @@ export function ProductCard({ product }: { product: ProductPackage }) {
         <p className="mb-4 text-sm font-semibold text-leaf-700 dark:text-mango-300">
           Only {product.stock} boxes in current harvest batch
         </p>
+        <div className="mb-4 grid grid-cols-2 gap-2 text-xs font-bold text-ink/65 dark:text-cream/65">
+          <span className="rounded-md bg-mango-100 px-2 py-2 text-center text-ink">Carbide-free</span>
+          <span className="rounded-md bg-leaf-50 px-2 py-2 text-center text-leaf-700">COD available</span>
+        </div>
         <div className="grid grid-cols-2 gap-2">
           <button
             type="button"
             onClick={() => addItem(product.id)}
-            className="flex items-center justify-center gap-2 rounded-lg border border-black/10 px-3 py-3 text-sm font-black transition hover:bg-mango-100 dark:border-white/10 dark:hover:bg-white/10"
+            className="flex min-h-11 items-center justify-center gap-2 rounded-lg border border-black/10 px-3 py-3 text-sm font-black transition hover:bg-mango-100 dark:border-white/10 dark:hover:bg-white/10"
           >
             <ShoppingCart size={17} /> Cart
           </button>
           <button
             type="button"
             onClick={() => addItem(product.id)}
-            className="flex items-center justify-center gap-2 rounded-lg bg-ink px-3 py-3 text-sm font-black text-white transition hover:bg-leaf-700 dark:bg-mango-500 dark:text-ink"
+            className="flex min-h-11 items-center justify-center gap-2 rounded-lg bg-ink px-3 py-3 text-sm font-black text-white transition hover:bg-leaf-700 dark:bg-mango-500 dark:text-ink"
           >
             <Zap size={17} /> Buy
           </button>

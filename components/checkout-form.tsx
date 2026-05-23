@@ -5,6 +5,7 @@ import { FormEvent, useEffect, useState } from "react";
 import { estimateDelivery, formatTk } from "@/lib/commerce";
 import { products } from "@/lib/products";
 import { useCart } from "@/components/cart-provider";
+import { PaymentBadges } from "@/components/payment-badges";
 
 export function CheckoutForm() {
   const router = useRouter();
@@ -127,6 +128,9 @@ export function CheckoutForm() {
         <p className="mt-4 rounded-lg bg-mango-100 p-4 text-sm font-bold text-ink">
           Complaint support-এর জন্য unboxing video mandatory.
         </p>
+        <div className="mt-4">
+          <PaymentBadges compact />
+        </div>
         {error ? <p className="mt-4 text-sm font-bold text-red-600">{error}</p> : null}
       </div>
 
@@ -173,7 +177,7 @@ export function CheckoutForm() {
         </p>
         <button
           disabled={loading || !items.length}
-          className="mt-5 w-full rounded-lg bg-mango-500 px-4 py-3 font-black text-ink disabled:cursor-not-allowed disabled:opacity-50"
+          className="mt-5 min-h-12 w-full rounded-lg bg-mango-500 px-4 py-3 font-black text-ink disabled:cursor-not-allowed disabled:opacity-50"
         >
           {loading ? "Confirming..." : "Confirm Order"}
         </button>
