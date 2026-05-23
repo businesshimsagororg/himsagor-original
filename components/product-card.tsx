@@ -42,7 +42,7 @@ export function ProductCard({ product }: { product: ProductPackage }) {
                   <Star key={index} size={13} fill="currentColor" />
                 ))}
                 <span className="ml-1 text-ink/55 dark:text-cream/60">
-                  {product.reviewCount} reviews
+                  {product.reviewCount} রিভিউ
                 </span>
               </div>
             ) : null}
@@ -63,11 +63,11 @@ export function ProductCard({ product }: { product: ProductPackage }) {
           </div>
         </div>
         <p className="mb-4 rounded-lg bg-cream px-3 py-3 text-sm font-semibold text-ink/70 dark:bg-white/10 dark:text-cream/70">
-          Delivery estimate: {product.deliveryEstimate}
+          ডেলিভারি: {product.deliveryEstimate}
         </p>
         <div className="mb-4 grid grid-cols-2 gap-2 text-xs font-bold text-ink/65 dark:text-cream/65">
           <span className="rounded-md bg-mango-100 px-2 py-2 text-center text-ink">Carbide-free</span>
-          <span className="rounded-md bg-leaf-50 px-2 py-2 text-center text-leaf-700">COD available</span>
+          <span className="rounded-md bg-leaf-50 px-2 py-2 text-center text-leaf-700">COD আছে</span>
         </div>
         <div className="grid grid-cols-2 gap-2">
           <button
@@ -75,14 +75,14 @@ export function ProductCard({ product }: { product: ProductPackage }) {
             onClick={() => addItem(product.id)}
             className="flex min-h-11 items-center justify-center gap-2 rounded-lg border border-black/10 px-3 py-3 text-sm font-black transition hover:bg-mango-100 dark:border-white/10 dark:hover:bg-white/10"
           >
-            <ShoppingCart size={17} /> Cart
+            <ShoppingCart size={17} /> কার্টে নিন
           </button>
           <button
             type="button"
             onClick={() => addItem(product.id)}
-            className="flex min-h-11 items-center justify-center gap-2 rounded-lg bg-ink px-3 py-3 text-sm font-black text-white transition hover:bg-leaf-700 dark:bg-mango-500 dark:text-ink"
+            className="flex min-h-11 items-center justify-center gap-2 rounded-lg bg-mango-500 px-3 py-3 text-sm font-black text-ink transition hover:bg-mango-300"
           >
-            <Zap size={17} /> Buy Now
+            <Zap size={17} /> অর্ডার করুন
           </button>
         </div>
       </div>

@@ -46,7 +46,7 @@ export const products: ProductPackage[] = [
     taste: ["Rich sweet aroma", "Low fiber", "Creamy pulp", "Naturally ripened"],
     bestFor: ["Small families", "Fruit lovers", "First order"],
     reviewCount: 7,
-    shortDescription: "ছোট পরিবারের জন্য fresh trial box.",
+    shortDescription: "ছোট পরিবারের জন্য পরিচ্ছন্ন trial box.",
     storageAdvice: "পাকা আম ফ্রিজে রাখুন, আধা-পাকা আম ১-২ দিন room temperature-এ রাখুন।"
   },
   {
@@ -68,7 +68,7 @@ export const products: ProductPackage[] = [
     taste: ["Deep mango fragrance", "Balanced sweetness", "Soft golden flesh"],
     bestFor: ["Families", "Monthly fruit plan", "Sharing"],
     reviewCount: 11,
-    shortDescription: "পরিবারের জন্য সবচেয়ে value-focused প্যাক।",
+    shortDescription: "পরিবারের জন্য সবচেয়ে সাশ্রয়ী প্যাক।",
     storageAdvice: "Carton খুলে বাতাস চলাচল করে এমন জায়গায় রাখুন।"
   },
   {
@@ -90,7 +90,7 @@ export const products: ProductPackage[] = [
     taste: ["Elegant sweetness", "Fragrant", "Smooth pulp"],
     bestFor: ["Gift buyers", "Corporate orders", "Premium customers"],
     reviewCount: 5,
-    shortDescription: "Gift-ready প্যাকেজিংসহ বাছাইকৃত আম।",
+    shortDescription: "উপহার দেওয়ার মতো প্যাকেজিংসহ বাছাইকৃত আম।",
     storageAdvice: "Gift delivery-এর পর box খুলে আম আলাদা করে রাখলে freshness ভালো থাকে।"
   },
   {
@@ -112,7 +112,7 @@ export const products: ProductPackage[] = [
     taste: ["Intense aroma", "Naturally sweet", "Juicy and fiber-light"],
     bestFor: ["Large families", "Office teams", "Bulk buyers"],
     reviewCount: 3,
-    shortDescription: "Bulk order, office sharing এবং বড় পরিবারের জন্য।",
+    shortDescription: "বড় পরিবার, office sharing এবং bulk order-এর জন্য।",
     storageAdvice: "Bulk box খুলে আমগুলো এক স্তরে ছড়িয়ে রাখুন।"
   }
 ];

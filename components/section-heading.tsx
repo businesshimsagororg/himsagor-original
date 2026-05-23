@@ -12,7 +12,7 @@
   return (
     <div className={align === "center" ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
       {eyebrow ? (
-        <p className="mb-3 text-sm font-black uppercase tracking-[0.18em] text-leaf-700 dark:text-mango-300">
+        <p className="mb-3 text-sm font-black uppercase tracking-[0.14em] text-leaf-700 dark:text-mango-300">
           {eyebrow}
         </p>
       ) : null}

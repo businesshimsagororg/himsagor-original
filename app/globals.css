@@ -22,8 +22,8 @@ body {
   margin: 0;
   font-family: var(--font-bangla-sans), "Hind Siliguri", system-ui, sans-serif;
   background:
-    radial-gradient(circle at top left, rgba(255, 212, 71, 0.22), transparent 32rem),
-    linear-gradient(180deg, #fff8ea 0%, #ffffff 42%, #edf8ee 100%);
+    radial-gradient(circle at top left, rgba(255, 212, 71, 0.26), transparent 34rem),
+    linear-gradient(180deg, #fffaf0 0%, #ffffff 46%, #f1fbf3 100%);
   color: #17140d;
 }
 
@@ -63,12 +63,12 @@ a {
 }
 
 .section-pad {
-  padding: 5rem 1rem;
+  padding: 5.5rem 1rem;
 }
 
 @media (min-width: 768px) {
   .section-pad {
-    padding: 7rem 2rem;
+    padding: 8rem 2rem;
   }
 }
 

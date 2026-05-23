@@ -1,6 +1,7 @@
 ﻿import type { Metadata } from "next";
-import { ProductCard } from "@/components/product-card";
+import { PaymentBadges } from "@/components/payment-badges";
 import { SectionHeading } from "@/components/section-heading";
+import { ShopProductGrid } from "@/components/shop-product-grid";
 import { products } from "@/lib/products";
 
 export const metadata: Metadata = {
@@ -15,14 +16,13 @@ export default function ShopPage() {
       <div className="container-soft">
         <SectionHeading
           eyebrow="Shop"
-          title="Choose your Satkhira Himsagor box"
-          copy="সব package COD supported, no advance payment, pan Bangladesh delivery."
+          title="সাতক্ষীরার হিমসাগর box বেছে নিন"
+          copy="পরিবার, gift বা bulk order - সব package COD supported, no advance payment, pan Bangladesh delivery."
         />
-        <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+        <div className="mx-auto mt-6 flex max-w-3xl justify-center">
+          <PaymentBadges compact />
         </div>
+        <ShopProductGrid products={products} />
         <div className="mt-10 rounded-lg bg-white p-5 text-center shadow-sm dark:bg-white/10">
           <p className="text-xl font-black">Bulk or corporate gift order?</p>
           <p className="mt-2 text-ink/70 dark:text-cream/70">

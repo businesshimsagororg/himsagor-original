@@ -33,7 +33,7 @@ export function CartDrawer() {
           <div>
             <p className="text-xl font-black">আপনার Cart</p>
             <p className="text-sm text-ink/60 dark:text-cream/70">
-              COD available, no advance payment
+              COD আছে, অগ্রিম payment লাগবে না
             </p>
           </div>
           <button
@@ -114,7 +114,7 @@ export function CartDrawer() {
         <div className="mt-6 rounded-lg bg-white p-4 dark:bg-white/10">
           <p className="text-sm font-bold">Flat Bangladesh Delivery</p>
           <p className="mt-1 text-xs text-ink/60 dark:text-cream/60">
-            Same delivery logic for Dhaka and outside Dhaka. Free shipping over ৳2,500.
+            সারা বাংলাদেশে একই delivery logic. ৳2,500-এর বেশি order-এ free shipping.
           </p>
           <input
             value={couponCode}
@@ -132,7 +132,7 @@ export function CartDrawer() {
               <span>-{formatTk(totals.discount)}</span>
             </div>
             <div className="flex justify-between">
-              <span>Shipping</span>
+              <span>Delivery</span>
               <span>{formatTk(totals.shipping)}</span>
             </div>
             <div className="flex justify-between border-t border-black/10 pt-3 text-lg font-black dark:border-white/10">
@@ -143,9 +143,9 @@ export function CartDrawer() {
           <Link
             href={cartProducts.length ? "/checkout" : "/shop?cart=required"}
             onClick={() => setOpen(false)}
-            className="mt-4 flex w-full items-center justify-center rounded-lg bg-ink px-4 py-3 font-black text-white dark:bg-mango-500 dark:text-ink"
+            className="mt-4 flex w-full items-center justify-center rounded-lg bg-mango-500 px-4 py-3 font-black text-ink transition hover:bg-mango-300"
           >
-            {cartProducts.length ? "Checkout" : "Add Product First"}
+            {cartProducts.length ? "Checkout করুন" : "আগে পণ্য যোগ করুন"}
           </Link>
         </div>
       </aside>

@@ -8,15 +8,15 @@ import { useCart } from "@/components/cart-provider";
 import { useTheme } from "@/components/theme-provider";
 
 const navItems = [
-  ["Home", "/"],
-  ["Shop", "/shop"],
-  ["About", "/about"],
-  ["Reviews", "/reviews"],
-  ["Gallery", "/gallery"],
-  ["Account", "/account"],
-  ["Track", "/track"],
+  ["হোম", "/"],
+  ["শপ", "/shop"],
+  ["গল্প", "/about"],
+  ["রিভিউ", "/reviews"],
+  ["গ্যালারি", "/gallery"],
+  ["অ্যাকাউন্ট", "/account"],
+  ["ট্র্যাক", "/track"],
   ["FAQ", "/faq"],
-  ["Contact", "/contact"]
+  ["যোগাযোগ", "/contact"]
 ];
 
 export function Header() {
@@ -65,7 +65,7 @@ export function Header() {
           <button
             type="button"
             onClick={() => setCartOpen(true)}
-            className="focus-ring relative grid h-10 w-10 place-items-center rounded-full bg-ink text-white transition hover:bg-leaf-700 dark:bg-mango-500 dark:text-ink"
+            className="focus-ring relative grid h-10 w-10 place-items-center rounded-full bg-mango-500 text-ink transition hover:bg-mango-300"
             aria-label="Open cart"
           >
             <ShoppingBag size={18} />

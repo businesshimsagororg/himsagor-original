@@ -19,6 +19,7 @@ import { SectionHeading } from "@/components/section-heading";
 import { SeasonalStockCard } from "@/components/seasonal-stock-card";
 import { TrustBadges } from "@/components/trust-badges";
 import { VideoShowcase } from "@/components/video-showcase";
+import { PaymentBadges } from "@/components/payment-badges";
 import { brand } from "@/lib/constants";
 import { faqs } from "@/lib/faqs";
 import { products } from "@/lib/products";
@@ -50,6 +51,12 @@ const premiumFeatures: Array<[LucideIcon, string, string]> = [
 
 const fallbackBatchStock = products.reduce((sum, product) => sum + product.stock, 0);
 
+const heroTrust: Array<[LucideIcon, string, string]> = [
+  [ShieldCheck, "COD", "পণ্য হাতে পেয়ে payment"],
+  [BadgeCheck, "No Advance", "সাধারণ অর্ডারে আগে টাকা নয়"],
+  [Truck, "Pan Bangladesh", "সারা দেশে courier delivery"]
+];
+
 export default function HomePage() {
   const faqSchema = {
     "@context": "https://schema.org",
@@ -67,8 +74,8 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
-      <section className="relative min-h-[calc(100vh-4rem)] overflow-hidden px-4 py-10 md:py-16">
-        <div className="container-soft grid min-h-[calc(100vh-8rem)] items-center gap-10 lg:grid-cols-[1fr_0.9fr]">
+      <section className="relative overflow-hidden px-4 py-12 md:py-20">
+        <div className="container-soft grid items-center gap-12 lg:grid-cols-[1fr_0.9fr]">
           <MotionReveal>
             <div>
               <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-leaf-500/20 bg-white/80 px-4 py-2 text-sm font-bold text-leaf-700 shadow-sm dark:bg-white/10 dark:text-mango-300">
@@ -78,19 +85,19 @@ export default function HomePage() {
                 সাতক্ষীরার বাছাইকৃত হিমসাগর, সরাসরি আপনার ঘরে।
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-9 text-ink/70 md:text-xl dark:text-cream/75">
-                {brand.tagline}. COD available, কোনো advance payment লাগবে না,
-                এবং প্রতিটি box careful packing করে পাঠানো হয়।
+                {brand.tagline}. COD আছে, অগ্রিম টাকা লাগবে না, আর প্রতিটি box
+                order confirmation-এর পর carefully packed করে পাঠানো হয়।
               </p>
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <Link
                   href="/shop"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg bg-ink px-6 py-4 font-black text-white shadow-soft transition hover:bg-leaf-700 dark:bg-mango-500 dark:text-ink"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-mango-500 px-6 py-4 font-black text-ink shadow-soft transition hover:bg-mango-300"
                 >
-                  এখনই অর্ডার করুন <ArrowRight size={18} />
+                  আজই অর্ডার করুন <ArrowRight size={18} />
                 </Link>
                 <Link
                   href="/shop"
-                  className="inline-flex items-center justify-center gap-2 rounded-lg border border-black/10 bg-white/80 px-6 py-4 font-black dark:border-white/10 dark:bg-white/10"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-black/10 bg-white/80 px-6 py-4 font-black transition hover:border-leaf-500 hover:text-leaf-700 dark:border-white/10 dark:bg-white/10 dark:hover:text-mango-300"
                 >
                   প্যাকেজ দেখুন
                 </Link>
@@ -98,30 +105,13 @@ export default function HomePage() {
               <p className="mt-4 text-sm font-bold text-ink/60 dark:text-cream/60">
                 ফোনে অর্ডার: <a href={`tel:${brand.phone}`} className="text-leaf-700 dark:text-mango-300">{brand.phone}</a>
               </p>
-              <div className="mt-8 grid max-w-2xl grid-cols-3 gap-3">
-                {[
-                  ["COD", "Cash on delivery"],
-                  ["No Advance", "আগে টাকা নয়"],
-                  ["Pan BD", "সারা দেশে"]
-                ].map(([big, small]) => (
-                  <div key={big} className="rounded-lg bg-white/70 p-4 text-center shadow-sm dark:bg-white/10">
-                    <p className="text-xl font-black md:text-2xl">{big}</p>
-                    <p className="text-xs font-bold text-ink/60 dark:text-cream/60">
-                      {small}
-                    </p>
-                  </div>
-                ))}
+              <div className="mt-6">
+                <PaymentBadges compact />
               </div>
             </div>
           </MotionReveal>
           <MotionReveal delay={0.15}>
             <div className="relative">
-              <div className="absolute -right-2 top-10 z-10 rounded-lg bg-white/90 p-4 shadow-soft dark:bg-leaf-900/90">
-                <p className="text-sm font-black">Orchard Selected</p>
-                <p className="mt-1 max-w-36 text-xs leading-5 text-ink/60 dark:text-cream/70">
-                  Aroma, firmness and size checked before packing.
-                </p>
-              </div>
               <div className="relative aspect-[4/5] overflow-hidden rounded-lg shadow-glow">
                 <Image
                   priority
@@ -132,12 +122,27 @@ export default function HomePage() {
                   sizes="(min-width: 1024px) 45vw, 100vw"
                 />
               </div>
-              <div className="mango-float absolute -bottom-7 left-6 rounded-lg bg-mango-500 p-5 text-ink shadow-soft">
-                <p className="text-2xl font-black">Fresh Batch</p>
-                <p className="text-sm font-bold">Packed after order confirmation</p>
-              </div>
             </div>
           </MotionReveal>
+        </div>
+      </section>
+
+      <section className="px-4 pb-16">
+        <div className="container-soft grid gap-3 rounded-lg border border-black/10 bg-white/80 p-3 shadow-soft md:grid-cols-3 dark:border-white/10 dark:bg-white/10">
+          {heroTrust.map(([Icon, title, text], index) => (
+            <div key={title} className="flex items-center gap-3 rounded-lg bg-cream p-4 dark:bg-white/10">
+              <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-mango-500 font-black text-ink">
+                {index + 1}
+              </span>
+              <div>
+                <p className="flex items-center gap-2 font-black">
+                  <Icon size={17} className="text-leaf-700 dark:text-mango-300" />
+                  {title}
+                </p>
+                <p className="mt-1 text-sm text-ink/60 dark:text-cream/65">{text}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </section>
 

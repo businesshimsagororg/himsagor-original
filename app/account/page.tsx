@@ -13,8 +13,8 @@ export default function AccountPage() {
       <div className="container-soft">
         <SectionHeading
           eyebrow="Account"
-          title="Customer account and order history"
-          copy="Phone-based customer profile, order history lookup, saved address schema, and wishlist-ready database support."
+          title="Customer account ও order history"
+          copy="Phone number দিয়ে profile save করুন এবং আগের order history খুঁজে দেখুন।"
         />
         <div className="mt-10">
           <AccountPanel />

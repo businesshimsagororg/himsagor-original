@@ -23,6 +23,10 @@ export function AccountPanel() {
   }
 
   async function loadOrders() {
+    if (!phone.trim()) {
+      setMessage("Order history দেখতে mobile number লিখুন।");
+      return;
+    }
     const response = await fetch(`/api/customers/orders?phone=${encodeURIComponent(phone)}`);
     const data = await response.json();
     setOrders(data.orders || []);
@@ -34,27 +38,29 @@ export function AccountPanel() {
       <form onSubmit={saveProfile} className="rounded-lg bg-white p-5 shadow-sm dark:bg-white/10">
         <h2 className="text-2xl font-black">Customer registration</h2>
         <div className="mt-5 grid gap-3">
-          <input name="name" required placeholder="Full name" className="rounded-lg border border-black/10 bg-cream px-3 py-3 dark:border-white/10 dark:bg-white/10" />
-          <input name="phone" required placeholder="Phone number" className="rounded-lg border border-black/10 bg-cream px-3 py-3 dark:border-white/10 dark:bg-white/10" />
+          <input name="name" required placeholder="আপনার নাম" className="rounded-lg border border-black/10 bg-cream px-3 py-3 dark:border-white/10 dark:bg-white/10" />
+          <input name="phone" required type="tel" inputMode="tel" placeholder="মোবাইল নম্বর" className="rounded-lg border border-black/10 bg-cream px-3 py-3 dark:border-white/10 dark:bg-white/10" />
           <input name="email" placeholder="Email optional" className="rounded-lg border border-black/10 bg-cream px-3 py-3 dark:border-white/10 dark:bg-white/10" />
-          <button className="rounded-lg bg-ink px-4 py-3 font-black text-white dark:bg-mango-500 dark:text-ink">
-            Save Account
+          <button className="rounded-lg bg-mango-500 px-4 py-3 font-black text-ink transition hover:bg-mango-300">
+            Account save করুন
           </button>
         </div>
         <p className="mt-4 text-sm text-ink/60 dark:text-cream/60">
-          Saved addresses and wishlist data are supported in the database schema for production expansion.
+          Phone number দিয়ে profile save করলে পরে order history খুঁজে পাওয়া সহজ হবে।
         </p>
       </form>
       <div className="rounded-lg bg-white p-5 shadow-sm dark:bg-white/10">
         <h2 className="text-2xl font-black">Order history</h2>
-        <div className="mt-5 flex gap-2">
+        <div className="mt-5 flex flex-col gap-2 sm:flex-row">
           <input
             value={phone}
             onChange={(event) => setPhone(event.target.value)}
-            placeholder="Phone number"
-            className="flex-1 rounded-lg border border-black/10 bg-cream px-3 py-3 dark:border-white/10 dark:bg-white/10"
+            type="tel"
+            inputMode="tel"
+            placeholder="মোবাইল নম্বর"
+            className="min-h-12 flex-1 rounded-lg border border-black/10 bg-cream px-3 py-3 dark:border-white/10 dark:bg-white/10"
           />
-          <button onClick={loadOrders} className="rounded-lg bg-mango-500 px-4 py-3 font-black text-ink">
+          <button onClick={loadOrders} className="min-h-12 rounded-lg bg-mango-500 px-4 py-3 font-black text-ink transition hover:bg-mango-300">
             Search
           </button>
         </div>

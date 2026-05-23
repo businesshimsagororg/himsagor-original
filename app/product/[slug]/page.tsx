@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { FaqList } from "@/components/faq-list";
 import { ProductCard } from "@/components/product-card";
 import { ProductDetailActions } from "@/components/product-detail-actions";
+import { PaymentBadges } from "@/components/payment-badges";
 import { ReviewSlider } from "@/components/review-slider";
 import { SectionHeading } from "@/components/section-heading";
 import { ShippingReturnsAccordion } from "@/components/shipping-returns-accordion";
@@ -120,17 +121,20 @@ export default async function ProductDetailsPage({ params }: ProductPageProps) {
               ) : null}
             </div>
             <ProductDetailActions productId={product.id} />
+            <div className="mt-4">
+              <PaymentBadges compact />
+            </div>
             <ShippingReturnsAccordion />
             <div className="mt-8 grid gap-3 sm:grid-cols-2">
-              <Info label="Origin" value="Satkhira orchard, Bangladesh" />
-              <Info label="Harvest" value="Current seasonal batch" />
+              <Info label="উৎস" value="Satkhira orchard, Bangladesh" />
+              <Info label="Batch" value="Current seasonal batch" />
               <Info label="Delivery" value={product.deliveryEstimate} />
               <Info label="Packaging" value={product.packaging} />
               <Info label="Storage" value={product.storageAdvice} />
-              <Info label="Best For" value={product.bestFor.join(", ")} />
+              <Info label="Ideal For" value={product.bestFor.join(", ")} />
             </div>
             <div className="mt-8 rounded-lg bg-white p-5 shadow-sm dark:bg-white/10">
-              <h2 className="text-xl font-black">Taste Profile</h2>
+              <h2 className="text-xl font-black">Taste profile</h2>
               <div className="mt-4 flex flex-wrap gap-2">
                 {product.taste.map((taste) => (
                   <span key={taste} className="rounded-full bg-mango-100 px-3 py-1 text-sm font-bold text-ink">
@@ -163,7 +167,7 @@ export default async function ProductDetailsPage({ params }: ProductPageProps) {
       </section>
       <section className="section-pad">
         <div className="container-soft">
-          <SectionHeading title="You may also like" eyebrow="More packages" />
+          <SectionHeading title="আরও package" eyebrow="Related" />
           <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
             {products
               .filter((entry) => entry.id !== product.id)

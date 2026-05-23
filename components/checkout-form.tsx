@@ -7,6 +7,21 @@ import { products } from "@/lib/products";
 import { useCart } from "@/components/cart-provider";
 import { PaymentBadges } from "@/components/payment-badges";
 
+const commonDistricts = [
+  "Dhaka",
+  "Chattogram",
+  "Gazipur",
+  "Narayanganj",
+  "Khulna",
+  "Rajshahi",
+  "Sylhet",
+  "Barishal",
+  "Rangpur",
+  "Mymensingh",
+  "Cumilla",
+  "Satkhira"
+];
+
 export function CheckoutForm() {
   const router = useRouter();
   const {
@@ -77,6 +92,13 @@ export function CheckoutForm() {
         <p className="mb-6 text-ink/70 dark:text-cream/70">
           Cash on Delivery available. কোনো advance payment লাগবে না।
         </p>
+        <div className="mb-5 grid gap-2 text-sm font-black sm:grid-cols-3">
+          {["১. তথ্য দিন", "২. Summary দেখুন", "৩. Order confirm"].map((step) => (
+            <div key={step} className="rounded-lg bg-mango-100 px-3 py-2 text-center text-ink">
+              {step}
+            </div>
+          ))}
+        </div>
         <div className="mb-6 grid gap-3 md:grid-cols-3">
           <div className="rounded-lg bg-cream p-3 text-sm dark:bg-white/10">
             <p className="font-black">Delivery</p>
@@ -95,21 +117,26 @@ export function CheckoutForm() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
-          <Field name="customerName" label="Full Name" placeholder="আপনার নাম" />
+          <Field name="customerName" label="নাম" placeholder="আপনার নাম" autoComplete="name" />
           <Field
             name="phone"
-            label="Phone"
+            label="মোবাইল নম্বর"
             placeholder="01577428064"
             type="tel"
             inputMode="tel"
             autoComplete="tel"
           />
-          <Field name="district" label="District" placeholder="জেলা" />
-          <Field name="thana" label="Thana / Upazila" placeholder="থানা / উপজেলা" />
-          <Field name="villageRoad" label="Village / Road" placeholder="গ্রাম / রোড" />
+          <Field name="district" label="জেলা" placeholder="জেলা" list="district-options" />
+          <Field name="thana" label="থানা / উপজেলা" placeholder="থানা / উপজেলা" />
+          <Field name="villageRoad" label="গ্রাম / রোড" placeholder="গ্রাম / রোড" />
         </div>
+        <datalist id="district-options">
+          {commonDistricts.map((district) => (
+            <option key={district} value={district} />
+          ))}
+        </datalist>
         <label className="mt-4 grid gap-2 text-sm font-bold">
-          Specific Address
+          বিস্তারিত ঠিকানা
           <textarea
             name="address"
             required
@@ -118,6 +145,10 @@ export function CheckoutForm() {
             className="rounded-lg border border-black/10 bg-cream px-3 py-3 outline-none dark:border-white/10 dark:bg-white/10"
           />
         </label>
+        <p className="mt-2 text-xs font-semibold text-ink/55 dark:text-cream/55">
+          উদাহরণ: house, road, village, union, bazar, landmark বা floor লিখুন।
+        </p>
+        <p className="mt-5 text-sm font-black">Payment Method</p>
         <div className="mt-4 grid gap-3 md:grid-cols-3">
           {[
             ["cod", "Cash on Delivery"],
@@ -140,7 +171,7 @@ export function CheckoutForm() {
           ))}
         </div>
         <label className="mt-4 grid gap-2 text-sm font-bold">
-          Order Note
+          Order note
           <textarea
             name="note"
             rows={3}
@@ -202,7 +233,7 @@ export function CheckoutForm() {
           disabled={loading || !items.length}
           className="mt-5 min-h-12 w-full rounded-lg bg-mango-500 px-4 py-3 font-black text-ink disabled:cursor-not-allowed disabled:opacity-50"
         >
-          {loading ? "Confirming..." : "Confirm Order"}
+          {loading ? "Confirming..." : "অর্ডার কনফার্ম করুন"}
         </button>
       </aside>
     </form>
@@ -215,7 +246,8 @@ function Field({
   placeholder,
   type = "text",
   inputMode,
-  autoComplete
+  autoComplete,
+  list
 }: {
   name: string;
   label: string;
@@ -223,6 +255,7 @@ function Field({
   type?: string;
   inputMode?: InputHTMLAttributes<HTMLInputElement>["inputMode"];
   autoComplete?: string;
+  list?: string;
 }) {
   return (
     <label className="grid gap-2 text-sm font-bold">
@@ -233,6 +266,7 @@ function Field({
         type={type}
         inputMode={inputMode}
         autoComplete={autoComplete}
+        list={list}
         placeholder={placeholder}
         className="rounded-lg border border-black/10 bg-cream px-3 py-3 outline-none dark:border-white/10 dark:bg-white/10"
       />

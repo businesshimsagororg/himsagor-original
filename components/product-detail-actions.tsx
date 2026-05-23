@@ -15,14 +15,14 @@ export function ProductDetailActions({ productId }: { productId: string }) {
           onClick={() => addItem(productId)}
           className="flex min-h-12 items-center justify-center gap-2 rounded-lg border border-black/10 bg-white px-5 py-4 font-black dark:border-white/10 dark:bg-white/10"
         >
-          <ShoppingCart size={18} /> Add to Cart
+          <ShoppingCart size={18} /> কার্টে নিন
         </button>
         <Link
           href="/checkout"
           onClick={() => addItem(productId)}
-          className="flex min-h-12 items-center justify-center gap-2 rounded-lg bg-ink px-5 py-4 font-black text-white dark:bg-mango-500 dark:text-ink"
+          className="flex min-h-12 items-center justify-center gap-2 rounded-lg bg-mango-500 px-5 py-4 font-black text-ink transition hover:bg-mango-300"
         >
-          <Zap size={18} /> Buy Now
+          <Zap size={18} /> অর্ডার করুন
         </Link>
       </div>
       <div className="mt-3 hidden md:block">

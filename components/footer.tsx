@@ -1,5 +1,6 @@
 ﻿import Link from "next/link";
 import { MessageCircle, Phone, ShieldCheck } from "lucide-react";
+import { PaymentBadges } from "@/components/payment-badges";
 import { brand, trustPoints } from "@/lib/constants";
 
 export function Footer() {
@@ -58,6 +59,9 @@ export function Footer() {
             {point}
           </span>
         ))}
+      </div>
+      <div className="container-soft mt-5">
+        <PaymentBadges compact />
       </div>
       <div className="container-soft mt-6 flex flex-col gap-2 border-t border-white/10 pt-5 text-xs text-cream/60 md:flex-row md:items-center md:justify-between">
         <p>© {new Date().getFullYear()} {brand.name}. All rights reserved.</p>
