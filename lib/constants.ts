@@ -11,8 +11,22 @@
   address: "Satkhira Orchard Desk, Dhaka Fulfillment Hub, Bangladesh"
 };
 
-export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL || "https://himsagororiginal.com";
+function normalizeSiteUrl(value: string | undefined) {
+  const fallback = "https://himsagororiginal.com";
+  const raw = (value || fallback).trim();
+  const withoutEnvKey = raw.replace(/^NEXT_PUBLIC_SITE_URL=/, "").trim();
+  const withProtocol = /^https?:\/\//.test(withoutEnvKey)
+    ? withoutEnvKey
+    : `https://${withoutEnvKey}`;
+
+  try {
+    return new URL(withProtocol).origin;
+  } catch {
+    return fallback;
+  }
+}
+
+export const siteUrl = normalizeSiteUrl(process.env.NEXT_PUBLIC_SITE_URL);
 
 export const trustPoints = [
   "100% Authentic Satkhira Himsagor",
